@@ -91,10 +91,12 @@ class Health(Object):
 class Player(Object):
     """Represents player"""
     name: str
-    health: Health = Health(20, 20, 0.6*WIDTH, 15, RED,  0.6*WIDTH, 100, 100)
     crouch_height: int = PLAYER_HEIGHT // 2
     projectiles: list = field(default_factory=list)
     sword: Sword = None
+
+    def __post_init__(self):
+        self.health = Health(20, 20, 0.6*WIDTH, 15, RED,  0.6*WIDTH, 100, 100)
 
     def add_projectile(self, x_direction):
         """Adds a projectile to the player"""
